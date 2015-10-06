@@ -4,7 +4,7 @@
 #
 Name     : Flask
 Version  : 0.10.1
-Release  : 13
+Release  : 14
 URL      : https://pypi.python.org/packages/source/F/Flask/Flask-0.10.1.tar.gz
 Source0  : https://pypi.python.org/packages/source/F/Flask/Flask-0.10.1.tar.gz
 Summary  : A microframework based on Werkzeug, Jinja2 and good intentions
