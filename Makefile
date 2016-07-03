@@ -1,4 +1,5 @@
 PKG_NAME := Flask
-URL := https://pypi.python.org/packages/source/F/Flask/Flask-0.10.1.tar.gz
+URL := http://pypi.debian.net/Flask/Flask-0.11.1.tar.gz
+ARCHIVES :=
 
 include ../common/Makefile.common
