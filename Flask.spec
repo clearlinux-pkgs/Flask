@@ -4,7 +4,7 @@
 #
 Name     : Flask
 Version  : 0.12
-Release  : 23
+Release  : 24
 URL      : http://pypi.debian.net/Flask/Flask-0.12.tar.gz
 Source0  : http://pypi.debian.net/Flask/Flask-0.12.tar.gz
 Summary  : A microframework based on Werkzeug, Jinja2 and good intentions
