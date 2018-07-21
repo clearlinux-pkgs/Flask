@@ -4,53 +4,73 @@
 #
 Name     : Flask
 Version  : 0.12.2
-Release  : 25
+Release  : 26
 URL      : http://pypi.debian.net/Flask/Flask-0.12.2.tar.gz
 Source0  : http://pypi.debian.net/Flask/Flask-0.12.2.tar.gz
 Summary  : A microframework based on Werkzeug, Jinja2 and good intentions
 Group    : Development/Tools
 License  : BSD-3-Clause
 Requires: Flask-bin
+Requires: Flask-python3
+Requires: Flask-license
 Requires: Flask-python
 Requires: Jinja2
 Requires: Werkzeug
+Requires: click
 Requires: itsdangerous
 BuildRequires : Jinja2
 BuildRequires : MarkupSafe
 BuildRequires : Werkzeug
 BuildRequires : Werkzeug-python
+BuildRequires : buildreq-distutils3
 BuildRequires : itsdangerous
 BuildRequires : itsdangerous-python
 BuildRequires : pbr
 BuildRequires : pip
 BuildRequires : pytest-runner
-BuildRequires : python-dev
 BuildRequires : python3-dev
 BuildRequires : setuptools
 
 %description
-// Flask //
-web development, one drop at a time
-~ What is Flask?
-Flask is a microframework for Python based on Werkzeug
-and Jinja2.  It's intended for getting started very quickly
-and was developed with best intentions in mind.
+Flask
+        -----
+        
+        Flask is a microframework for Python based on Werkzeug, Jinja 2 and good
 
 %package bin
 Summary: bin components for the Flask package.
 Group: Binaries
+Requires: Flask-license
 
 %description bin
 bin components for the Flask package.
 
 
+%package license
+Summary: license components for the Flask package.
+Group: Default
+
+%description license
+license components for the Flask package.
+
+
 %package python
 Summary: python components for the Flask package.
 Group: Default
+Requires: Flask-python3
 Provides: flask-python
 
 %description python
 python components for the Flask package.
+
+
+%package python3
+Summary: python3 components for the Flask package.
+Group: Default
+Requires: python3-core
+
+%description python3
+python3 components for the Flask package.
 
 
 %prep
@@ -61,15 +81,16 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1494943414
-python2 setup.py build -b py2
+export SOURCE_DATE_EPOCH=1532213201
 python3 setup.py build -b py3
 
 %install
-export SOURCE_DATE_EPOCH=1494943414
 rm -rf %{buildroot}
-python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
-python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
+mkdir -p %{buildroot}/usr/share/doc/Flask
+cp LICENSE %{buildroot}/usr/share/doc/Flask/LICENSE
+cp docs/license.rst %{buildroot}/usr/share/doc/Flask/docs_license.rst
+cp artwork/LICENSE %{buildroot}/usr/share/doc/Flask/artwork_LICENSE
+python3 -tt setup.py build -b py3 install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
@@ -81,7 +102,15 @@ echo ----[ mark ]----
 %defattr(-,root,root,-)
 /usr/bin/flask
 
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/Flask/LICENSE
+/usr/share/doc/Flask/artwork_LICENSE
+/usr/share/doc/Flask/docs_license.rst
+
 %files python
 %defattr(-,root,root,-)
-/usr/lib/python2*/*
+
+%files python3
+%defattr(-,root,root,-)
 /usr/lib/python3*/*
