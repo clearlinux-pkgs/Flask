@@ -6,7 +6,7 @@
 #
 Name     : Flask
 Version  : 1.0.2
-Release  : 27
+Release  : 28
 URL      : https://files.pythonhosted.org/packages/4b/12/c1fbf4971fda0e4de05565694c9f0c92646223cff53f15b6eb248a310a62/Flask-1.0.2.tar.gz
 Source0  : https://files.pythonhosted.org/packages/4b/12/c1fbf4971fda0e4de05565694c9f0c92646223cff53f15b6eb248a310a62/Flask-1.0.2.tar.gz
 Source99 : https://files.pythonhosted.org/packages/4b/12/c1fbf4971fda0e4de05565694c9f0c92646223cff53f15b6eb248a310a62/Flask-1.0.2.tar.gz.asc
@@ -32,13 +32,9 @@ BuildRequires : Werkzeug-python
 BuildRequires : buildreq-distutils3
 BuildRequires : itsdangerous
 BuildRequires : itsdangerous-python
-BuildRequires : pbr
-BuildRequires : pip
 BuildRequires : pluggy
 BuildRequires : py-python
 BuildRequires : pytest
-BuildRequires : python3-dev
-BuildRequires : setuptools
 BuildRequires : tox
 BuildRequires : virtualenv
 
@@ -63,7 +59,7 @@ BuildRequires : virtualenv
 %package bin
 Summary: bin components for the Flask package.
 Group: Binaries
-Requires: Flask-license
+Requires: Flask-license = %{version}-%{release}
 
 %description bin
 bin components for the Flask package.
@@ -80,7 +76,7 @@ license components for the Flask package.
 %package python
 Summary: python components for the Flask package.
 Group: Default
-Requires: Flask-python3
+Requires: Flask-python3 = %{version}-%{release}
 Provides: flask-python
 
 %description python
@@ -104,15 +100,18 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1532468105
-python3 setup.py build -b py3
+export SOURCE_DATE_EPOCH=1538839766
+python3 setup.py build
 
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/Flask
-cp docs/license.rst %{buildroot}/usr/share/doc/Flask/docs_license.rst
+cp LICENSE %{buildroot}/usr/share/doc/Flask/LICENSE
 cp artwork/LICENSE %{buildroot}/usr/share/doc/Flask/artwork_LICENSE
-python3 -tt setup.py build -b py3 install --root=%{buildroot}
+cp docs/license.rst %{buildroot}/usr/share/doc/Flask/docs_license.rst
+cp examples/javascript/LICENSE %{buildroot}/usr/share/doc/Flask/examples_javascript_LICENSE
+cp examples/tutorial/LICENSE %{buildroot}/usr/share/doc/Flask/examples_tutorial_LICENSE
+python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
@@ -125,9 +124,12 @@ echo ----[ mark ]----
 /usr/bin/flask
 
 %files license
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
+/usr/share/doc/Flask/LICENSE
 /usr/share/doc/Flask/artwork_LICENSE
 /usr/share/doc/Flask/docs_license.rst
+/usr/share/doc/Flask/examples_javascript_LICENSE
+/usr/share/doc/Flask/examples_tutorial_LICENSE
 
 %files python
 %defattr(-,root,root,-)
