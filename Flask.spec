@@ -6,7 +6,7 @@
 #
 Name     : Flask
 Version  : 1.0.2
-Release  : 28
+Release  : 29
 URL      : https://files.pythonhosted.org/packages/4b/12/c1fbf4971fda0e4de05565694c9f0c92646223cff53f15b6eb248a310a62/Flask-1.0.2.tar.gz
 Source0  : https://files.pythonhosted.org/packages/4b/12/c1fbf4971fda0e4de05565694c9f0c92646223cff53f15b6eb248a310a62/Flask-1.0.2.tar.gz
 Source99 : https://files.pythonhosted.org/packages/4b/12/c1fbf4971fda0e4de05565694c9f0c92646223cff53f15b6eb248a310a62/Flask-1.0.2.tar.gz.asc
@@ -18,13 +18,9 @@ Requires: Flask-python3
 Requires: Flask-license
 Requires: Flask-python
 Requires: Jinja2
-Requires: Sphinx
 Requires: Werkzeug
 Requires: click
-Requires: coverage
 Requires: itsdangerous
-Requires: pytest
-Requires: tox
 BuildRequires : Jinja2
 BuildRequires : MarkupSafe
 BuildRequires : Werkzeug
@@ -100,7 +96,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1538839766
+export SOURCE_DATE_EPOCH=1538839996
 python3 setup.py build
 
 %install
