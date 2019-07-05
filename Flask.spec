@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x7A1C87E3F5BC42A8 (davidism@gmail.com)
 #
 Name     : Flask
-Version  : 1.0.3
-Release  : 32
-URL      : https://files.pythonhosted.org/packages/e9/96/8f6d83828a77306a119e12b215a7b0637c955b408fb1c161311a6891b958/Flask-1.0.3.tar.gz
-Source0  : https://files.pythonhosted.org/packages/e9/96/8f6d83828a77306a119e12b215a7b0637c955b408fb1c161311a6891b958/Flask-1.0.3.tar.gz
-Source99 : https://files.pythonhosted.org/packages/e9/96/8f6d83828a77306a119e12b215a7b0637c955b408fb1c161311a6891b958/Flask-1.0.3.tar.gz.asc
+Version  : 1.1.0
+Release  : 33
+URL      : https://files.pythonhosted.org/packages/1b/73/5133d483c4eac2c49f82a80bbb25c2d75e01177afe66f84ef8dc6d17c071/Flask-1.1.0.tar.gz
+Source0  : https://files.pythonhosted.org/packages/1b/73/5133d483c4eac2c49f82a80bbb25c2d75e01177afe66f84ef8dc6d17c071/Flask-1.1.0.tar.gz
+Source99 : https://files.pythonhosted.org/packages/1b/73/5133d483c4eac2c49f82a80bbb25c2d75e01177afe66f84ef8dc6d17c071/Flask-1.1.0.tar.gz.asc
 Summary  : A simple framework for building complex web applications.
 Group    : Development/Tools
 License  : BSD-3-Clause
@@ -83,14 +83,15 @@ python3 components for the Flask package.
 
 
 %prep
-%setup -q -n Flask-1.0.3
+%setup -q -n Flask-1.1.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1558194435
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1562307550
+export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -105,9 +106,7 @@ python3 setup.py build
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/Flask
-cp LICENSE %{buildroot}/usr/share/package-licenses/Flask/LICENSE
-cp artwork/LICENSE %{buildroot}/usr/share/package-licenses/Flask/artwork_LICENSE
-cp docs/license.rst %{buildroot}/usr/share/package-licenses/Flask/docs_license.rst
+cp LICENSE.rst %{buildroot}/usr/share/package-licenses/Flask/LICENSE.rst
 cp examples/javascript/LICENSE %{buildroot}/usr/share/package-licenses/Flask/examples_javascript_LICENSE
 cp examples/tutorial/LICENSE %{buildroot}/usr/share/package-licenses/Flask/examples_tutorial_LICENSE
 python3 -tt setup.py build  install --root=%{buildroot}
@@ -124,9 +123,7 @@ echo ----[ mark ]----
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/Flask/LICENSE
-/usr/share/package-licenses/Flask/artwork_LICENSE
-/usr/share/package-licenses/Flask/docs_license.rst
+/usr/share/package-licenses/Flask/LICENSE.rst
 /usr/share/package-licenses/Flask/examples_javascript_LICENSE
 /usr/share/package-licenses/Flask/examples_tutorial_LICENSE
 
