@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x7A1C87E3F5BC42A8 (davidism@gmail.com)
 #
 Name     : Flask
-Version  : 1.1.0
-Release  : 33
-URL      : https://files.pythonhosted.org/packages/1b/73/5133d483c4eac2c49f82a80bbb25c2d75e01177afe66f84ef8dc6d17c071/Flask-1.1.0.tar.gz
-Source0  : https://files.pythonhosted.org/packages/1b/73/5133d483c4eac2c49f82a80bbb25c2d75e01177afe66f84ef8dc6d17c071/Flask-1.1.0.tar.gz
-Source99 : https://files.pythonhosted.org/packages/1b/73/5133d483c4eac2c49f82a80bbb25c2d75e01177afe66f84ef8dc6d17c071/Flask-1.1.0.tar.gz.asc
+Version  : 1.1.1
+Release  : 34
+URL      : https://files.pythonhosted.org/packages/2e/80/3726a729de758513fd3dbc64e93098eb009c49305a97c6751de55b20b694/Flask-1.1.1.tar.gz
+Source0  : https://files.pythonhosted.org/packages/2e/80/3726a729de758513fd3dbc64e93098eb009c49305a97c6751de55b20b694/Flask-1.1.1.tar.gz
+Source99 : https://files.pythonhosted.org/packages/2e/80/3726a729de758513fd3dbc64e93098eb009c49305a97c6751de55b20b694/Flask-1.1.1.tar.gz.asc
 Summary  : A simple framework for building complex web applications.
 Group    : Development/Tools
 License  : BSD-3-Clause
@@ -83,14 +83,14 @@ python3 components for the Flask package.
 
 
 %prep
-%setup -q -n Flask-1.1.0
+%setup -q -n Flask-1.1.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1562307550
+export SOURCE_DATE_EPOCH=1562637858
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
