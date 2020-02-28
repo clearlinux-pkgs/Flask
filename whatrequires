@@ -2,4 +2,7 @@
 Flask
 Flask-RESTful
 WSME
+ceph
+keystone
 locustio
+sahara
