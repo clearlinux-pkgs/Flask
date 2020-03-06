@@ -6,7 +6,7 @@
 #
 Name     : Flask
 Version  : 1.1.1
-Release  : 38
+Release  : 39
 URL      : https://files.pythonhosted.org/packages/2e/80/3726a729de758513fd3dbc64e93098eb009c49305a97c6751de55b20b694/Flask-1.1.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/2e/80/3726a729de758513fd3dbc64e93098eb009c49305a97c6751de55b20b694/Flask-1.1.1.tar.gz
 Source1  : https://files.pythonhosted.org/packages/2e/80/3726a729de758513fd3dbc64e93098eb009c49305a97c6751de55b20b694/Flask-1.1.1.tar.gz.asc
@@ -38,13 +38,22 @@ BuildRequires : tox
 BuildRequires : virtualenv
 
 %description
-Flask
 =====
-Flask is a lightweight `WSGI`_ web application framework. It is designed
-to make getting started quick and easy, with the ability to scale up to
-complex applications. It began as a simple wrapper around `Werkzeug`_
-and `Jinja`_ and has become one of the most popular Python web
-application frameworks.
+        
+        Flask is a lightweight `WSGI`_ web application framework. It is designed
+        to make getting started quick and easy, with the ability to scale up to
+        complex applications. It began as a simple wrapper around `Werkzeug`_
+        and `Jinja`_ and has become one of the most popular Python web
+        application frameworks.
+        
+        Flask offers suggestions, but doesn't enforce any dependencies or
+        project layout. It is up to the developer to choose the tools and
+        libraries they want to use. There are many extensions provided by the
+        community that make adding new functionality easy.
+        
+        
+        Installing
+        ----------
 
 %package bin
 Summary: bin components for the Flask package.
@@ -77,7 +86,11 @@ python components for the Flask package.
 Summary: python3 components for the Flask package.
 Group: Default
 Requires: python3-core
-Provides: pypi(Flask)
+Provides: pypi(flask)
+Requires: pypi(click)
+Requires: pypi(itsdangerous)
+Requires: pypi(jinja2)
+Requires: pypi(werkzeug)
 
 %description python3
 python3 components for the Flask package.
@@ -92,8 +105,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1582924304
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1583518525
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
