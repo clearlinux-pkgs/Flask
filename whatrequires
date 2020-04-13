@@ -6,4 +6,3 @@ ceph
 keystone
 locustio
 requests-ntlm
-sahara
