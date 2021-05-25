@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x7A1C87E3F5BC42A8 (davidism@gmail.com)
 #
 Name     : Flask
-Version  : 1.1.2
-Release  : 41
-URL      : https://files.pythonhosted.org/packages/4e/0b/cb02268c90e67545a0e3a37ea1ca3d45de3aca43ceb7dbf1712fb5127d5d/Flask-1.1.2.tar.gz
-Source0  : https://files.pythonhosted.org/packages/4e/0b/cb02268c90e67545a0e3a37ea1ca3d45de3aca43ceb7dbf1712fb5127d5d/Flask-1.1.2.tar.gz
-Source1  : https://files.pythonhosted.org/packages/4e/0b/cb02268c90e67545a0e3a37ea1ca3d45de3aca43ceb7dbf1712fb5127d5d/Flask-1.1.2.tar.gz.asc
+Version  : 2.0.1
+Release  : 42
+URL      : https://files.pythonhosted.org/packages/c0/df/c516b5f38a670b6b0de604c2637ed5860db03692c2f8542fd1f60c2552a7/Flask-2.0.1.tar.gz
+Source0  : https://files.pythonhosted.org/packages/c0/df/c516b5f38a670b6b0de604c2637ed5860db03692c2f8542fd1f60c2552a7/Flask-2.0.1.tar.gz
+Source1  : https://files.pythonhosted.org/packages/c0/df/c516b5f38a670b6b0de604c2637ed5860db03692c2f8542fd1f60c2552a7/Flask-2.0.1.tar.gz.asc
 Summary  : A simple framework for building complex web applications.
 Group    : Development/Tools
 License  : BSD-3-Clause
@@ -17,16 +17,17 @@ Requires: Flask-bin = %{version}-%{release}
 Requires: Flask-license = %{version}-%{release}
 Requires: Flask-python = %{version}-%{release}
 Requires: Flask-python3 = %{version}-%{release}
-Requires: Flask
 Requires: Jinja2
 Requires: Werkzeug
+Requires: asgiref
 Requires: click
 Requires: itsdangerous
-BuildRequires : Flask
+Requires: python-dotenv
 BuildRequires : Jinja2
 BuildRequires : MarkupSafe
 BuildRequires : Werkzeug
 BuildRequires : Werkzeug-python
+BuildRequires : asgiref
 BuildRequires : buildreq-distutils3
 BuildRequires : click
 BuildRequires : itsdangerous
@@ -34,6 +35,7 @@ BuildRequires : itsdangerous-python
 BuildRequires : pluggy
 BuildRequires : py-python
 BuildRequires : pytest
+BuildRequires : python-dotenv
 BuildRequires : tox
 BuildRequires : virtualenv
 
@@ -50,10 +52,6 @@ BuildRequires : virtualenv
         project layout. It is up to the developer to choose the tools and
         libraries they want to use. There are many extensions provided by the
         community that make adding new functionality easy.
-        
-        
-        Installing
-        ----------
 
 %package bin
 Summary: bin components for the Flask package.
@@ -97,15 +95,15 @@ python3 components for the Flask package.
 
 
 %prep
-%setup -q -n Flask-1.1.2
-cd %{_builddir}/Flask-1.1.2
+%setup -q -n Flask-2.0.1
+cd %{_builddir}/Flask-2.0.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1607989693
+export SOURCE_DATE_EPOCH=1621952445
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -121,9 +119,10 @@ python3 setup.py build
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/Flask
-cp %{_builddir}/Flask-1.1.2/LICENSE.rst %{buildroot}/usr/share/package-licenses/Flask/e32a549b135c4b2b268107adc12d13cca2ca1e8c
-cp %{_builddir}/Flask-1.1.2/examples/javascript/LICENSE %{buildroot}/usr/share/package-licenses/Flask/42dd5ee1eb8465027fad79f01df54ad8c3ffba65
-cp %{_builddir}/Flask-1.1.2/examples/tutorial/LICENSE %{buildroot}/usr/share/package-licenses/Flask/42dd5ee1eb8465027fad79f01df54ad8c3ffba65
+cp %{_builddir}/Flask-2.0.1/LICENSE.rst %{buildroot}/usr/share/package-licenses/Flask/e32a549b135c4b2b268107adc12d13cca2ca1e8c
+cp %{_builddir}/Flask-2.0.1/docs/license.rst %{buildroot}/usr/share/package-licenses/Flask/4747036caafe4df836d096b9b49d7fdb2782b0ff
+cp %{_builddir}/Flask-2.0.1/examples/javascript/LICENSE.rst %{buildroot}/usr/share/package-licenses/Flask/e32a549b135c4b2b268107adc12d13cca2ca1e8c
+cp %{_builddir}/Flask-2.0.1/examples/tutorial/LICENSE.rst %{buildroot}/usr/share/package-licenses/Flask/e32a549b135c4b2b268107adc12d13cca2ca1e8c
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -138,7 +137,7 @@ echo ----[ mark ]----
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/Flask/42dd5ee1eb8465027fad79f01df54ad8c3ffba65
+/usr/share/package-licenses/Flask/4747036caafe4df836d096b9b49d7fdb2782b0ff
 /usr/share/package-licenses/Flask/e32a549b135c4b2b268107adc12d13cca2ca1e8c
 
 %files python
