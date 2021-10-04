@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x7A1C87E3F5BC42A8 (davidism@gmail.com)
 #
 Name     : Flask
-Version  : 2.0.1
-Release  : 44
-URL      : https://files.pythonhosted.org/packages/c0/df/c516b5f38a670b6b0de604c2637ed5860db03692c2f8542fd1f60c2552a7/Flask-2.0.1.tar.gz
-Source0  : https://files.pythonhosted.org/packages/c0/df/c516b5f38a670b6b0de604c2637ed5860db03692c2f8542fd1f60c2552a7/Flask-2.0.1.tar.gz
-Source1  : https://files.pythonhosted.org/packages/c0/df/c516b5f38a670b6b0de604c2637ed5860db03692c2f8542fd1f60c2552a7/Flask-2.0.1.tar.gz.asc
+Version  : 2.0.2
+Release  : 45
+URL      : https://files.pythonhosted.org/packages/95/40/b976286b5e7ba01794a7e7588e7e7fa27fb16c6168fa849234840bf0f61d/Flask-2.0.2.tar.gz
+Source0  : https://files.pythonhosted.org/packages/95/40/b976286b5e7ba01794a7e7588e7e7fa27fb16c6168fa849234840bf0f61d/Flask-2.0.2.tar.gz
+Source1  : https://files.pythonhosted.org/packages/95/40/b976286b5e7ba01794a7e7588e7e7fa27fb16c6168fa849234840bf0f61d/Flask-2.0.2.tar.gz.asc
 Summary  : A simple framework for building complex web applications.
 Group    : Development/Tools
 License  : BSD-3-Clause
@@ -40,18 +40,13 @@ BuildRequires : tox
 BuildRequires : virtualenv
 
 %description
+Flask
 =====
-        
-        Flask is a lightweight `WSGI`_ web application framework. It is designed
-        to make getting started quick and easy, with the ability to scale up to
-        complex applications. It began as a simple wrapper around `Werkzeug`_
-        and `Jinja`_ and has become one of the most popular Python web
-        application frameworks.
-        
-        Flask offers suggestions, but doesn't enforce any dependencies or
-        project layout. It is up to the developer to choose the tools and
-        libraries they want to use. There are many extensions provided by the
-        community that make adding new functionality easy.
+Flask is a lightweight `WSGI`_ web application framework. It is designed
+to make getting started quick and easy, with the ability to scale up to
+complex applications. It began as a simple wrapper around `Werkzeug`_
+and `Jinja`_ and has become one of the most popular Python web
+application frameworks.
 
 %package bin
 Summary: bin components for the Flask package.
@@ -95,23 +90,23 @@ python3 components for the Flask package.
 
 
 %prep
-%setup -q -n Flask-2.0.1
-cd %{_builddir}/Flask-2.0.1
+%setup -q -n Flask-2.0.2
+cd %{_builddir}/Flask-2.0.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1621952445
+export SOURCE_DATE_EPOCH=1633379056
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
@@ -119,10 +114,10 @@ python3 setup.py build
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/Flask
-cp %{_builddir}/Flask-2.0.1/LICENSE.rst %{buildroot}/usr/share/package-licenses/Flask/e32a549b135c4b2b268107adc12d13cca2ca1e8c
-cp %{_builddir}/Flask-2.0.1/docs/license.rst %{buildroot}/usr/share/package-licenses/Flask/4747036caafe4df836d096b9b49d7fdb2782b0ff
-cp %{_builddir}/Flask-2.0.1/examples/javascript/LICENSE.rst %{buildroot}/usr/share/package-licenses/Flask/e32a549b135c4b2b268107adc12d13cca2ca1e8c
-cp %{_builddir}/Flask-2.0.1/examples/tutorial/LICENSE.rst %{buildroot}/usr/share/package-licenses/Flask/e32a549b135c4b2b268107adc12d13cca2ca1e8c
+cp %{_builddir}/Flask-2.0.2/LICENSE.rst %{buildroot}/usr/share/package-licenses/Flask/e32a549b135c4b2b268107adc12d13cca2ca1e8c
+cp %{_builddir}/Flask-2.0.2/docs/license.rst %{buildroot}/usr/share/package-licenses/Flask/4747036caafe4df836d096b9b49d7fdb2782b0ff
+cp %{_builddir}/Flask-2.0.2/examples/javascript/LICENSE.rst %{buildroot}/usr/share/package-licenses/Flask/e32a549b135c4b2b268107adc12d13cca2ca1e8c
+cp %{_builddir}/Flask-2.0.2/examples/tutorial/LICENSE.rst %{buildroot}/usr/share/package-licenses/Flask/e32a549b135c4b2b268107adc12d13cca2ca1e8c
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
